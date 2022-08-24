@@ -62,9 +62,7 @@ make_nav();
 
 // Build menu
 
-function checkViewPort()
-{
-	console.log("hi");
+const checkViewPort = () => {
 	let messageText = false;
 	for(let i = 0; i < sectionEl.length; i++) {
 		messageText = isInViewport(sectionEl[i]);
@@ -77,7 +75,7 @@ function checkViewPort()
 	}
 }
 
-function isInViewport(element) {
+const isInViewport = (element) => {
 	const rect = element.getBoundingClientRect();
 	return (
 		rect.top >= 0 &&
