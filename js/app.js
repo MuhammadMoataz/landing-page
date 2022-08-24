@@ -25,8 +25,9 @@
  */
 const ulEl = document.getElementById("navbar__list");
 const sectionEl = document.querySelectorAll('.landing__container');
-const addingList = document.createElement('ul');
+// const addingList = document.createElement('ul');
 const navbar = document.querySelector('.navbar__menu');
+let len = sectionEl.length;
 
 
 /**
@@ -53,15 +54,6 @@ const make_nav = () => {
 }
 make_nav();
 
-const navSectionEl = document.querySelectorAll('.href-elements');
-console.log(navSectionEl[0]);
-for (let i = 0; i < sectionEl.length; i++) {
-	// addingList.children[i].addEventListener('click', function (e) {
-	navSectionEl[i].addEventListener('click', function (e){
-		e.preventDefault();
-		sectionEl[i].scrollIntoView({behavior: "smooth"});
-	})
-}
 
 
 
@@ -78,15 +70,11 @@ for (let i = 0; i < sectionEl.length; i++) {
 
 // Build menu
 
-// Scroll to section on link click
-
-// Set sections as active
-
-const checkViewPort = () => {
+function checkViewPort()
+{
 	let messageText = false;
-	for(let i = 0; i < length ; i++)
+	for(let i = 0; i < len; i++)
 	{
-		// check if the section in on focus
 		messageText = isInViewport(sectionEl[i]);
 		if(messageText)
 		{
@@ -96,8 +84,8 @@ const checkViewPort = () => {
 	}
 }
 
-const isInViewport = (el) => {
-	const rect = el.getBoundingClientRect();
+function isInViewport(section) {
+	const rect = section.getBoundingClientRect();
 	return (
 		rect.top >= 0 &&
 		rect.left >= 0 &&
@@ -106,6 +94,27 @@ const isInViewport = (el) => {
 	);
 }
 
-// getting view port to work
+
+
+/* Listeners functions */
+
 document.addEventListener("scroll", checkViewPort);
+
 document.addEventListener("mousemove", checkViewPort);
+
+
+// Scroll to section on link click
+const navSectionEl = document.querySelectorAll('.href-elements');
+console.log(navSectionEl[0]);
+for (let i = 0; i < sectionEl.length; i++) {
+	// addingList.children[i].addEventListener('click', function (e) {1
+	navSectionEl[i].addEventListener('click', function (e){
+		e.preventDefault();
+		sectionEl[i].scrollIntoView({behavior: "smooth"});
+	})
+}
+
+// Set sections as active
+
+
+
