@@ -25,9 +25,6 @@
  */
 const ulEl = document.getElementById("navbar__list");
 const sectionEl = document.querySelectorAll('.landing__container');
-const navbar = document.querySelector('.navbar__menu');
-let len = sectionEl.length;
-
 
 /**
  * End Global Variables
@@ -44,12 +41,8 @@ let len = sectionEl.length;
 // build the nav
 const make_nav = () => {
 	for (let i = 1; i <= sectionEl.length; i++) {
-		// const liEl = document.createElement('li');
-		// liEl.innerHTML = `<a href="" class="href-elements">Section ${i}</a>`;
 		ulEl.innerHTML += `<li class="navSection"><a href="" class="href-elements">Section ${i}</a></li>`;
-		// addingList.appendChild(liEl);
 	}
-	// navbar.appendChild(addingList);
 }
 make_nav();
 

@@ -62,8 +62,8 @@ section {
 
 /* Navigation Styles*/
 .navbar__menu ul {
-	padding-left: 0;
-	margin: 0;
+	padding-left: 15px;
+	margin: 0 5px;
 	text-align: right;
 }
 
@@ -87,7 +87,7 @@ section {
 
 /* Header Styles */
 .page__header {
-	background: #fff;
+	background: #109bd7;
 	position: fixed;
 	top: 0;
 	width: 100%;
@@ -211,4 +211,14 @@ section.your-active-class .landing__container::after {
 	to {
 		transform: rotate(360deg) translate(-1em) rotate(-360deg);
 	}
+}
+/* Anchor elements decoration */
+.href-elements {
+	text-decoration: none;
+	padding-right: 16px;
+	padding-left: 16px;
+}
+
+.href-elements:hover {
+	background-color: aqua;
 }
