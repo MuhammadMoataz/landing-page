@@ -1,3 +1,4 @@
+"use strict";
 /**
  *
  * Manipulating the DOM exercise.
@@ -22,6 +23,12 @@
  * Define Global Variables
  *
  */
+// const ulEl = document.getElementById("navbar__list");
+const sectionEl = document.querySelectorAll('.landing__container');
+const addingList = document.createElement('ul');
+const navbar = document.querySelector('.navbar__menu');
+var length = sectionEl.length;
+
 
 /**
  * End Global Variables
@@ -36,6 +43,27 @@
  */
 
 // build the nav
+function make_nav() {
+	for (let i = 1; i <= sectionEl.length; i++) {
+		const liEl = document.createElement('li');
+		liEl.innerHTML = `<a href="" class="href-elements">Section ${i}</a>`;
+		// ulEl.innerHTML += `<!--<li class="navSection"><a href="" class="href-elements">Section ${i}</a></li>-->`;
+		addingList.appendChild(liEl);
+	}
+	navbar.appendChild(addingList);
+}
+make_nav();
+
+const navSectionEl = document.querySelectorAll('.href-elements');
+console.log(navSectionEl[0]);
+for (let i = 0; i < length; i++) {
+	addingList.children[i].addEventListener('click', function () {
+		sectionEl[i].scrollIntoView();
+	})
+}
+
+
+
 
 // Add class 'active' to section when near top of viewport
 
@@ -52,3 +80,4 @@
 // Scroll to section on link click
 
 // Set sections as active
+
