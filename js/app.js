@@ -68,8 +68,11 @@ const checkViewPort = () => {
 		messageText = isInViewport(sectionEl[i]);
 		if(messageText) {
 			sectionEl[i].parentElement.classList.add('your-active-class');
-			for (let j = 0; j < sectionEl.length; j++) {
-				if (j !== i) sectionEl[j].parentElement.classList.remove('your-active-class');
+			if (i === 0) sectionEl[i + 1].parentElement.classList.remove('your-active-class');
+			else if (i ===  sectionEl.length - 1) sectionEl[i - 1].parentElement.classList.remove('your-active-class');
+			else {
+				sectionEl[i - 1].parentElement.classList.remove('your-active-class');
+				sectionEl[i + 1].parentElement.classList.remove('your-active-class');
 			}
 		}
 	}
