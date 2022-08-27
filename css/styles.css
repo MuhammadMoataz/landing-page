@@ -62,13 +62,17 @@ section {
 
 /* Navigation Styles*/
 .navbar__menu ul {
+	padding-top: 10px;
 	padding-left: 15px;
 	margin: 0 5px;
 	text-align: right;
+	position: center;
 }
 
 .navbar__menu li {
 	display: inline-block;
+	position: center;
+
 }
 
 .navbar__menu .menu__link {
@@ -91,6 +95,7 @@ section {
 	position: fixed;
 	top: 0;
 	width: 100%;
+	height: 40px;
 	z-index: 5;
 }
 
