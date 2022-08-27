@@ -23,9 +23,9 @@
  * Define Global Variables
  *
  */
-const ulEl = document.getElementById("navbar__list");
-const sectionEl = document.querySelectorAll('.landing__container');
 
+const ulEl = document.getElementById("navbar__list");
+const sectionEl = document.querySelectorAll(".landing__container");
 /**
  * End Global Variables
  * Start Helper Functions
@@ -43,12 +43,8 @@ const make_nav = () => {
 	for (let i = 1; i <= sectionEl.length; i++) {
 		ulEl.innerHTML += `<li class="navSection"><a href="" class="href-elements">Section ${i}</a></li>`;
 	}
-}
+};
 make_nav();
-
-
-
-
 
 // Add class 'active' to section when near top of viewport
 
@@ -64,19 +60,21 @@ make_nav();
 
 const checkViewPort = () => {
 	let messageText = false;
-	for(let i = 0; i < sectionEl.length; i++) {
+	for (let i = 0; i < sectionEl.length; i++) {
 		messageText = isInViewport(sectionEl[i]);
-		if(messageText) {
-			sectionEl[i].parentElement.classList.add('your-active-class');
-			if (i === 0) sectionEl[i + 1].parentElement.classList.remove('your-active-class');
-			else if (i ===  sectionEl.length - 1) sectionEl[i - 1].parentElement.classList.remove('your-active-class');
-			else {
-				sectionEl[i - 1].parentElement.classList.remove('your-active-class');
-				sectionEl[i + 1].parentElement.classList.remove('your-active-class');
-			}
+		if (messageText) {
+			sectionEl[i].parentElement.classList.add("your-active-class");
+			// if (i === 0) sectionEl[i + 1].parentElement.classList.remove("your-active-class");
+			// else if (i === sectionEl.length - 1) sectionEl[i - 1].parentElement.classList.remove("your-active-class");
+			// else {
+			// 	sectionEl[i - 1].parentElement.classList.remove("your-active-class");
+			// 	sectionEl[i + 1].parentElement.classList.remove("your-active-class");
+			// }
+			for (let j = 0; j < sectionEl.length; j++)
+				if (j != i) sectionEl[j].parentElement.classList.remove("your-active-class");
 		}
 	}
-}
+};
 
 const isInViewport = (element) => {
 	const rect = element.getBoundingClientRect();
@@ -86,9 +84,7 @@ const isInViewport = (element) => {
 		rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
 		rect.right <= (window.innerWidth || document.documentElement.clientWidth)
 	);
-}
-
-
+};
 
 /* Listeners functions */
 
@@ -96,17 +92,13 @@ document.addEventListener("scroll", checkViewPort);
 
 document.addEventListener("mousemove", checkViewPort);
 
-
 // Scroll to section on link click
-const navSectionEl = document.querySelectorAll('.href-elements');
+const navSectionEl = document.querySelectorAll(".href-elements");
 for (let i = 0; i < sectionEl.length; i++) {
-	navSectionEl[i].addEventListener('click', function (e){
+	navSectionEl[i].addEventListener("click", function (e) {
 		e.preventDefault();
-		sectionEl[i].scrollIntoView({behavior: "smooth"});
-	})
+		sectionEl[i].scrollIntoView({ behavior: "smooth" });
+	});
 }
 
 // Set sections as active
-
-
-
