@@ -26,6 +26,9 @@
 
 const ulEl = document.getElementById("navbar__list");
 const sectionEl = document.querySelectorAll(".landing__container");
+const sections = document.getElementsByTagName("section");
+const frag = document.createDocumentFragment();
+const listElements = [];
 /**
  * End Global Variables
  * Start Helper Functions
@@ -41,7 +44,11 @@ const sectionEl = document.querySelectorAll(".landing__container");
 // build the nav
 const make_nav = () => {
 	for (let i = 1; i <= sectionEl.length; i++) {
-		ulEl.innerHTML += `<li class="navSection"><a href="" class="href-elements">Section ${i}</a></li>`;
+		const li = document.createElement("li");
+		const temp = `<li class="navSection"><a href="#section${i}" class="href-elements">Section ${i}</a></li>`;
+		ulEl.innerHTML += temp;
+
+		listElements.push(temp);
 	}
 };
 make_nav();
@@ -64,14 +71,14 @@ const checkViewPort = () => {
 		messageText = isInViewport(sectionEl[i]);
 		if (messageText) {
 			sectionEl[i].parentElement.classList.add("your-active-class");
+			// listElements[i].classList.add("active");
 			// if (i === 0) sectionEl[i + 1].parentElement.classList.remove("your-active-class");
 			// else if (i === sectionEl.length - 1) sectionEl[i - 1].parentElement.classList.remove("your-active-class");
 			// else {
 			// 	sectionEl[i - 1].parentElement.classList.remove("your-active-class");
 			// 	sectionEl[i + 1].parentElement.classList.remove("your-active-class");
 			// }
-			for (let j = 0; j < sectionEl.length; j++)
-				if (j != i) sectionEl[j].parentElement.classList.remove("your-active-class");
+			for (let j = 0; j < sectionEl.length; j++) if (j != i) sectionEl[j].parentElement.classList.remove("your-active-class");
 		}
 	}
 };
@@ -84,6 +91,9 @@ const isInViewport = (element) => {
 		rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
 		rect.right <= (window.innerWidth || document.documentElement.clientWidth)
 	);
+	// for (const section of sections) {
+	// 	if ()
+	// }
 };
 
 /* Listeners functions */

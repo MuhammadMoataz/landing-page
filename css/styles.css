@@ -72,7 +72,6 @@ section {
 .navbar__menu li {
 	display: inline-block;
 	position: center;
-
 }
 
 .navbar__menu .menu__link {
@@ -224,6 +223,7 @@ section.your-active-class .landing__container::after {
 	padding-left: 16px;
 }
 
-.href-elements:hover {
+.href-elements:hover,
+.active {
 	background-color: aqua;
 }
