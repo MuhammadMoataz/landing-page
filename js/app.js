@@ -29,6 +29,7 @@ const sectionEl = document.querySelectorAll(".landing__container");
 const sections = document.getElementsByTagName("section");
 const frag = document.createDocumentFragment();
 const listElements = [];
+const navBar = document.getElementById("navbar__list");
 /**
  * End Global Variables
  * Start Helper Functions
@@ -65,42 +66,63 @@ make_nav();
 
 // Build menu
 
-const checkViewPort = () => {
-	let messageText = false;
-	for (let i = 0; i < sectionEl.length; i++) {
-		messageText = isInViewport(sectionEl[i]);
-		if (messageText) {
-			sectionEl[i].parentElement.classList.add("your-active-class");
-			// listElements[i].classList.add("active");
-			// if (i === 0) sectionEl[i + 1].parentElement.classList.remove("your-active-class");
-			// else if (i === sectionEl.length - 1) sectionEl[i - 1].parentElement.classList.remove("your-active-class");
-			// else {
-			// 	sectionEl[i - 1].parentElement.classList.remove("your-active-class");
-			// 	sectionEl[i + 1].parentElement.classList.remove("your-active-class");
-			// }
-			for (let j = 0; j < sectionEl.length; j++) if (j != i) sectionEl[j].parentElement.classList.remove("your-active-class");
-		}
-	}
-};
+// const checkViewPort = () => {
+// 	let messageText = false;
+// 	for (let i = 0; i < sectionEl.length; i++) {
+// 		messageText = isInViewport(sectionEl[i]);
+// 		if (messageText) {
+// 			sectionEl[i].parentElement.classList.add("your-active-class");
+// 			for (let j = 0; j < sectionEl.length; j++) if (j != i) sectionEl[j].parentElement.classList.remove("your-active-class");
+// 		}
+// 	}
+// };
 
-const isInViewport = (element) => {
-	const rect = element.getBoundingClientRect();
-	return (
-		rect.top >= 0 &&
-		rect.left >= 0 &&
-		rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-		rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-	);
-	// for (const section of sections) {
-	// 	if ()
-	// }
-};
+// const isInViewport = (element) => {
+// 	const rect = element.getBoundingClientRect();
+// 	return (
+// 		rect.top >= 0 &&
+// 		rect.left >= 0 &&
+// 		rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+// 		rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+// 	);
+// 	// for (const section of sections) {
+// 	// 	if ()
+// 	// }
+// };
 
 /* Listeners functions */
 
-document.addEventListener("scroll", checkViewPort);
+// document.addEventListener("scroll", checkViewPort);
 
-document.addEventListener("mousemove", checkViewPort);
+// document.addEventListener("mousemove", checkViewPort);
+
+const observingSections = () => {
+	const observer = new IntersectionObserver(
+		function (entries) {
+			entries.forEach((entry) => {
+				console.log(entry);
+				let activeLink = navBar.querySelector(`[data-nav=${entry.target.id}]`);
+				if (entry.isIntersecting) {
+					entry.target.classList.add("your-active-class");
+					// activeLink.classList.add("active-link");
+					// location.hash = `${entry.target.id}`;
+				} else {
+					entry.target.classList.remove("your-active-class");
+					// activeLink.classList.remove("active-link");
+				}
+			});
+		},
+		// options //
+		{
+			threshold: 0.7,
+		}
+	);
+	return document.querySelectorAll("section").forEach((section) => {
+		observer.observe(section);
+	});
+};
+
+for (let i = 0; i < 5; i++) observingSections();
 
 // Scroll to section on link click
 const navSectionEl = document.querySelectorAll(".href-elements");
